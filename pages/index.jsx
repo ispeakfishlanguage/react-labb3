@@ -1,19 +1,25 @@
-// pages/index.js
 import { useState } from 'react'
 import MovieList from '../components/MovieList'
 import SearchBar from '../components/SearchBar'
 import LoadingSpinner from '../components/LoadingSpinner'
 
 export default function Home({ initialMovies }) {
-  const [movies, setMovies] = useState(initialMovies)
+  const [movies, setMovies] = useState(initialMovies || [])
   const [loading, setLoading] = useState(false)
 
   const handleSearch = async (query) => {
+    if (!query) return
     setLoading(true)
-    const res = await fetch(`/api/search?query=${query}`)
-    const data = await res.json()
-    setMovies(data.results)
-    setLoading(false)
+    try {
+      const res = await fetch(`/api/search?query=${query}`)
+      const data = await res.json()
+      setMovies(data.results || [])
+    } catch (error) {
+      console.error('Failed to fetch search results:', error)
+      setMovies([])
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -31,6 +37,9 @@ export async function getServerSideProps() {
 
   try {
     const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+    if (!res.ok) {
+      throw new Error(`Error! status: ${res.status}`);
+    }
     const data = await res.json()
 
     if (data && data.results) {
