@@ -1,4 +1,3 @@
-// components/GenreList.js
 export default function GenreList({ genres }) {
     return (
       <ul>

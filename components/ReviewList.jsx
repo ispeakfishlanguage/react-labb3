@@ -1,4 +1,3 @@
-// components/ReviewList.js
 export default function ReviewList({ reviews }) {
     return (
       <div>

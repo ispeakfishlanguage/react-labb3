@@ -1,4 +1,3 @@
-// components/MovieDetail.js
 export default function MovieDetail({ movie }) {
     return (
       <div>

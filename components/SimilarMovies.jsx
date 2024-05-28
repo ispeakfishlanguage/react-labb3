@@ -1,4 +1,3 @@
-// components/SimilarMovies.js
 import MovieListItem from './MovieListItem'
 
 export default function SimilarMovies({ movies }) {

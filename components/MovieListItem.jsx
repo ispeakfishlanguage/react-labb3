@@ -1,4 +1,3 @@
-// components/MovieListItem.js
 import Link from 'next/link'
 
 export default function MovieListItem({ movie }) {

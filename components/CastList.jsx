@@ -1,4 +1,3 @@
-// components/CastList.js
 export default function CastList({ cast }) {
     return (
       <div>

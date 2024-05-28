@@ -1,4 +1,3 @@
-// components/MovieCard.js
 export default function MovieCard({ movie }) {
     return (
       <div>
