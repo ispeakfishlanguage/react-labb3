@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import MovieListItem from './MovieListItem'
 
 export default function SimilarMovies({ movies }) {
@@ -9,7 +10,11 @@ export default function SimilarMovies({ movies }) {
       ) : (
         <div>
           {movies.map((movie) => (
-            <MovieListItem key={movie.id} movie={movie} />
+            <Link key={movie.id} href={`/movie/${movie.id}`}>
+              <a>
+                <MovieListItem movie={movie} />
+              </a>
+            </Link>
           ))}
         </div>
       )}
