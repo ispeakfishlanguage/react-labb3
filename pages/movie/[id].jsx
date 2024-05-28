@@ -22,14 +22,16 @@ export default function MoviePage({ movie, cast, similarMovies }) {
 
 export async function getServerSideProps({ params }) {
   const { id } = params
-  const resMovie = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=YOUR_API_KEY`)
+  const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
+
+  const resMovie = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
   const movie = await resMovie.json()
 
-  const resCast = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=YOUR_API_KEY`)
+  const resCast = await fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`)
   const castData = await resCast.json()
   const cast = castData.cast
 
-  const resSimilar = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=YOUR_API_KEY`)
+  const resSimilar = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}`)
   const similarData = await resSimilar.json()
   const similarMovies = similarData.results
 
