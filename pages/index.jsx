@@ -1,3 +1,4 @@
+// pages/index.js
 import { useState } from 'react'
 import MovieList from '../components/MovieList'
 import SearchBar from '../components/SearchBar'
@@ -25,8 +26,23 @@ export default function Home({ initialMovies }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY')
-  const data = await res.json()
+  const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
+  let initialMovies = []
 
-  return { props: { initialMovies: data.results } }
+  try {
+    const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+    const data = await res.json()
+
+    if (data && data.results) {
+      initialMovies = data.results
+    }
+  } catch (error) {
+    console.error('Failed to fetch popular movies:', error)
+  }
+
+  return {
+    props: {
+      initialMovies: initialMovies || [] // Ensure it's an array
+    }
+  }
 }
