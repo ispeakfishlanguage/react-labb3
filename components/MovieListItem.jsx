@@ -1,13 +1,15 @@
-import MovieListItem from './MovieListItem'
+import React from 'react'
 
-export default function MovieList({ movies }) {
-  if (!movies) return <p>No movies to display</p>
-
+export default function MovieListItem({ movie }) {
   return (
     <div>
-      {movies.map(movie => (
-        <MovieListItem key={movie.id} movie={movie} />
-      ))}
+      <h3>{movie.title}</h3>
+      <p>{movie.overview}</p>
+      <style jsx>{`
+        div {
+          margin-bottom: 1rem;
+        }
+      `}</style>
     </div>
   )
 }

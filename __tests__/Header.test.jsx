@@ -2,10 +2,6 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import Header from '../components/Header'
 
-/**
- * @jest-environment jsdom
- */
-
 test('renders navigation links', () => {
   render(<Header />)
   expect(screen.getByText('Home')).toBeInTheDocument()

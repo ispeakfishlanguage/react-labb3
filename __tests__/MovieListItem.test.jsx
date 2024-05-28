@@ -4,10 +4,6 @@ import MovieListItem from '../components/MovieListItem'
 
 const movie = { id: 1, title: 'Inception', overview: 'A mind-bending thriller' }
 
-/**
- * @jest-environment jsdom
- */
-
 test('renders movie title and overview', () => {
   render(<MovieListItem movie={movie} />)
   expect(screen.getByText('Inception')).toBeInTheDocument()

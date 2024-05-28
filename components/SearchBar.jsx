@@ -1,39 +1,22 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export default function SearchBar({ onSearch }) {
   const [query, setQuery] = useState('')
 
-  const handleSearch = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    const res = await fetch(`/api/search?query=${query}`)
-    const data = await res.json()
-    onSearch(data.results)
+    onSearch(query)
   }
 
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={handleSubmit} data-testid="search-form">
       <input
         type="text"
+        placeholder="Search movies..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search movies..."
       />
       <button type="submit">Search</button>
-      <style jsx>{`
-        form {
-          display: flex;
-          margin-bottom: 1rem;
-        }
-        input {
-          flex: 1;
-          padding: 0.5rem;
-          font-size: 1rem;
-        }
-        button {
-          padding: 0.5rem 1rem;
-          font-size: 1rem;
-        }
-      `}</style>
     </form>
   )
 }
