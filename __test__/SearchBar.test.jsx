@@ -2,6 +2,10 @@ import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import SearchBar from '../components/SearchBar'
 
+/**
+ * @jest-environment jsdom
+ */
+
 test('calls onSearch with the correct query', () => {
   const mockOnSearch = jest.fn()
   render(<SearchBar onSearch={mockOnSearch} />)

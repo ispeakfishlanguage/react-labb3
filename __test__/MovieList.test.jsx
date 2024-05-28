@@ -7,6 +7,10 @@ const movies = [
   { id: 2, title: 'Interstellar', overview: 'A journey beyond the stars' }
 ]
 
+/**
+ * @jest-environment jsdom
+ */
+
 test('renders a list of movies', () => {
   render(<MovieList movies={movies} />)
   expect(screen.getByText('Inception')).toBeInTheDocument()
