@@ -2,6 +2,8 @@ import Link from 'next/link'
 import MovieListItem from './MovieListItem'
 
 export default function SimilarMovies({ movies }) {
+  if (!movies) return <p>No similar movies found.</p>
+
   return (
     <div>
       <h3>Similar Movies</h3>

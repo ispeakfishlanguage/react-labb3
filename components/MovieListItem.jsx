@@ -1,17 +1,13 @@
-import Link from 'next/link'
+import MovieListItem from './MovieListItem'
 
-export default function MovieListItem({ movie }) {
+export default function MovieList({ movies }) {
+  if (!movies) return <p>No movies to display</p>
+
   return (
     <div>
-      <Link href={`/movie/${movie.id}`}>
-        <h3>{movie.title}</h3>
-      </Link>
-      <p>{movie.overview.substring(0, 100)}...</p>
-      <style jsx>{`
-        div {
-          margin-bottom: 1rem;
-        }
-      `}</style>
+      {movies.map(movie => (
+        <MovieListItem key={movie.id} movie={movie} />
+      ))}
     </div>
   )
 }
